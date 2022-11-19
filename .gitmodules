@@ -1,0 +1,18 @@
+[submodule "Tools/Jetson/Software/OpenCV-3.x"]
+	path = Tools/Jetson/Software/OpenCV-3.x
+	url = https://github.com/jetsonhacks/buildOpenCVXavier.git
+[submodule "Tools/Jetson/Software/OpenCV-4.x"]
+	path = Tools/Jetson/Software/OpenCV-4.x
+	url = https://github.com/JetsonHacksNano/buildOpenCV.git
+[submodule "Tools/Jetson/Software/Librealsense2"]
+	path = Tools/Jetson/Software/Librealsense2
+	url = https://github.com/jetsonhacks/buildLibrealsense2Xavier.git
+[submodule "Tools/Jetson/Software/XavierNXOverclock"]
+	path = Tools/Jetson/Software/XavierNXOverclock
+	url = https://github.com/borongyuan/XavierNXOverclock.git
+[submodule "Tools/Jetson/Software/Jetpack_init/rootOnNVMe"]
+	path = Tools/Jetson/Software/Jetpack_init/rootOnNVMe
+	url = https://github.com/jetsonhacks/rootOnNVMe.git
+[submodule "Tools/Jetson/Software/Jetpack_init/rootOnUSB"]
+	path = Tools/Jetson/Software/Jetpack_init/rootOnUSB
+	url = https://github.com/jetsonhacks/rootOnUSB.git
