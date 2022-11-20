@@ -26,7 +26,7 @@ cmake   -DCMAKE_INSTALL_PREFIX=/usr/local \
         -DCMAKE_LIBRARY_PATH=/usr/local/cuda/targets/aarch64-linux/lib/stubs \
         -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-$VERSION/modules \
         -DWITH_CUDA=ON \
-        -DCUDA_NVCC_FLAGS="--expt-relaxed-constexpr"
+        -DCUDA_NVCC_FLAGS="--expt-relaxed-constexpr" \
         -DENABLE_FAST_MATH=ON \
         -DCUDA_FAST_MATH=ON \
         -DWITH_CUBLAS=ON \
@@ -68,4 +68,4 @@ cmake   -DCMAKE_INSTALL_PREFIX=/usr/local \
         -DWITH_WEBP=OFF \
         -DWITH_JASPER=OFF ..
 
-make -j$(nproc)
+make package -j$(nproc)

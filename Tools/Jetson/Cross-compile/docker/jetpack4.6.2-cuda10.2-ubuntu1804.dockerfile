@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
+FROM nvidia/cuda:10.2-cudnn8-devel-ubuntu18.04
 
 ENV ARCH=aarch64 \
     HOSTCC=gcc \
@@ -75,5 +75,17 @@ RUN wget https://repo.download.nvidia.com/jetson/x86_64/pool/r32.4/c/cuda/cuda-c
 # nvidia jetpack 4.6.2 installs libcublas.so at /usr/lib/aarch64-linux-gnu
 # while previously it used to store it at /usr/local/cuda/targets/aarch64-linux/lib/stubs
 RUN ln -s /usr/lib/aarch64-linux-gnu/libcublas.so /usr/local/cuda/targets/aarch64-linux/lib/stubs/libcublas.so
+
+# install qt5-dev
+RUN mkdir -p /root/build_qt5 && \
+    cd /root/build_qt5 && \
+    wget https://download.qt.io/archive/qt/5.9/5.9.5/single/qt-everywhere-opensource-src-5.9.5.tar.xz && \
+    tar -xvf qt-everywhere-opensource-src-5.9.5.tar.xz
+COPY scripts/configure_qt5.sh /root/build_qt5/qt-everywhere-opensource-src-5.9.5
+RUN cd /root/build_qt5/qt-everywhere-opensource-src-5.9.5 && \
+    ./configure_qt5.sh && \
+    make -j$(nproc) && \
+    make install -j$(nproc) &&\
+    rm -rf /root/build_qt5
 
 WORKDIR /
