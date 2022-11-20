@@ -5,6 +5,7 @@ set(CMAKE_CXX_COMPILER aarch64-linux-gnu-g++)
 set(CMAKE_CUDA_COMPILER nvcc)
 set(CMAKE_CUDA_HOST_COMPILER aarch64-linux-gnu-gcc)
 set(CMAKE_FIND_ROOT_PATH "/usr/aarch64-linux-gnu")
+SET(CMAKE_INSTALL_PREFIX "/usr/aarch64-linux-gnu")
 
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
