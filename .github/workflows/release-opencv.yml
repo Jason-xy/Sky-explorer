@@ -1,0 +1,65 @@
+name: Release Cross Compile OpenCV Installer
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - '.github/workflows/docker-image.yml'
+      - '.github/workflows/release-opencv.yml'
+      - 'Tools/Jetson/Cross-compile/docker/*'
+      - 'Tools/Jetson/Cross-compile/release_prebuilts/release_opencv.sh'
+      - 'Tools/Jetson/Cross-compile/scripts/build_OpenCV.sh'
+      
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - '.github/workflows/docker-image.yml'
+      - '.github/workflows/release-opencv.yml'
+      - 'Tools/Jetson/Cross-compile/docker/*'
+      - 'Tools/Jetson/Cross-compile/release_prebuilts/release_opencv.sh'
+      - 'Tools/Jetson/Cross-compile/scripts/build_OpenCV.sh'
+
+jobs:
+  Release-OpenCV-3-4-3:
+    runs-on: ubuntu-latest
+    steps:
+    -
+      name: Checkout
+      uses: actions/checkout@v3
+    -
+      name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_HUB_ACCOUNT }}
+        password: ${{ secrets.DOCKER_HUB_TOKEN }}
+    -
+      name: Start to Compile
+      run: ./Tools/Jetson/Cross-compile/release_prebuilts/release_opencv.sh 3.4.3
+    -
+      name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: OpenCV-3.4.3-cuda10.2-aarch64.sh
+        path: Tools/Jetson/Cross-compile/scripts/OpenCV-3.4.3-cuda10.2-aarch64.sh
+
+  Release-OpenCV-4-2-0:
+    runs-on: ubuntu-latest
+    steps:
+    -
+      name: Checkout
+      uses: actions/checkout@v3
+    -
+      name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_HUB_ACCOUNT }}
+        password: ${{ secrets.DOCKER_HUB_TOKEN }}
+    -
+      name: Start to Compile
+      run: ./Tools/Jetson/Cross-compile/release_prebuilts/release_opencv.sh 4.2.0
+    -
+      name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: OpenCV-4.2.0-cuda10.2-aarch64.sh
+        path: Tools/Jetson/Cross-compile/scripts/OpenCV-4.2.0-cuda10.2-aarch64.sh
