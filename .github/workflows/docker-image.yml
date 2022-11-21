@@ -3,8 +3,15 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - '.github/workflows/docker-image.yml'
+      - 'Tools/Jetson/Cross-compile/docker/*'
+      
   pull_request:
     branches: [ "main" ]
+    paths:
+      - '.github/workflows/docker-image.yml'
+      - 'Tools/Jetson/Cross-compile/docker/*'
 
 jobs:
 
