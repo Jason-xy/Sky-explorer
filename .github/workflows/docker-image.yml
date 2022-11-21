@@ -36,5 +36,6 @@ jobs:
         context: Tools/Jetson/Cross-compile
         file: Tools/Jetson/Cross-compile/docker/jetpack4.6.2-cuda10.2-ubuntu1804.dockerfile
         push: true
-        tags: jasonxxxyyy/jetson-cross-compile:jetpack4.6.2-cuda10.2-ubuntu1804-${{ steps.date.outputs.today }}
-              jasonxxxyyy/jetson-cross-compile:jetpack4.6.2-cuda10.2-ubuntu1804-latest
+        tags: | 
+          jasonxxxyyy/jetson-cross-compile:jetpack4.6.2-cuda10.2-ubuntu1804-${{ steps.date.outputs.today }}
+          jasonxxxyyy/jetson-cross-compile:jetpack4.6.2-cuda10.2-ubuntu1804-latest
