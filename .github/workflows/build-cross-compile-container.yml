@@ -4,13 +4,13 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - '.github/workflows/docker-image.yml'
+      - '.github/workflows/build-cross-compile-container.yml'
       - 'Tools/Jetson/Cross-compile/docker/*'
       
   pull_request:
     branches: [ "main" ]
     paths:
-      - '.github/workflows/docker-image.yml'
+      - '.github/workflows/build-cross-compile-container.yml'
       - 'Tools/Jetson/Cross-compile/docker/*'
 
 jobs:
