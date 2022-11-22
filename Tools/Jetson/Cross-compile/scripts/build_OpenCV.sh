@@ -68,4 +68,6 @@ cmake   -DCMAKE_INSTALL_PREFIX=/usr/local \
         -DWITH_WEBP=OFF \
         -DWITH_JASPER=OFF ..
 
+make -j$(nproc)
+make install -j$(nproc)
 make package -j$(nproc)
