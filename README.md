@@ -15,5 +15,10 @@ Autonomous aerial exploration robot
 
 ### Flight controller
 
+| Workflow\Branch | master                                                       |
+| --------------- | ------------------------------------------------------------ |
+| Copter          | [![Test Copter](https://github.com/jason-xy/ardupilot/workflows/test%20copter/badge.svg?branch=master)](https://github.com/ArduPilot/ardupilot/actions/workflows/test_sitl_copter.yml) |
+| Unit test       | [![Test Unit Tests](https://github.com/jason-xy/ardupilot/workflows/test%20unit%20tests/badge.svg?branch=master)](https://github.com/ArduPilot/ardupilot/actions/workflows/test_unit_tests.yml) |
+
 ### Upper component
 
