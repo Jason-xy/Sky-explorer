@@ -8,5 +8,9 @@ mkdir -p ../catkin_temp_ws
 cd ../catkin_temp_ws
 source /opt/ros/noetic/setup.bash
 
-catkin config -s $script_dir/../src --cmake-args -DCMAKE_TOOLCHAIN_FILE=$script_dir/toolchain/toolchain.cmake --
-catkin build camera_models
+mkdir -p src && rm -rf src/*
+cp -r $script_dir/../src/* src/
+cd src && catkin_init_workspace
+cd ..
+
+catkin_make
