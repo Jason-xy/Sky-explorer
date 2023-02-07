@@ -5,6 +5,7 @@ FROM nvidia/cuda:11.4.1-devel-ubuntu20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y software-properties-common && \
     add-apt-repository universe && \
     apt-get install -y curl && \
@@ -16,6 +17,7 @@ RUN apt-get update && \
     wget \
     cmake \
     git \
+    unzip \
     libavcodec-dev \
     libgoogle-glog-dev \
     libgflags-dev \
@@ -41,14 +43,18 @@ RUN apt-get update && \
     pkg-config \
     ros-foxy-desktop \
     python3-argcomplete \
-    ros-dev-tools
-
-# Python 2.7
-RUN apt-get install -y python-dev  python-numpy  python-py  python-pytest
-# Python 3.6
-RUN apt-get install -y python3-dev python3-numpy python3-py python3-pytest
-# GStreamer support
-RUN apt-get install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+    ros-dev-tools \
+    python-dev \
+    python-numpy \
+    python-py \
+    python-pytest \
+    python3-dev \
+    python3-numpy \
+    python3-py \
+    python3-pytest \
+    libgstreamer1.0-dev \
+    libgstreamer-plugins-base1.0-dev && \
+    apt-get clean
 
 # opencv-4.5.4-cuda11.4
 ENV ARCH_BIN="7.2,8.6"
@@ -86,7 +92,8 @@ RUN mkdir -p $OPENCV_SOURCE_DIR && cd $OPENCV_SOURCE_DIR && \
         ../ && \
         make -j$(nproc) && \
         make install && \
-        ldconfig
+        ldconfig && \
+        rm -rf $OPENCV_SOURCE_DIR/*
 
 # ceres-solver-2.1.0 with cuda
 RUN cd $OPENCV_SOURCE_DIR && \
@@ -97,4 +104,13 @@ RUN cd $OPENCV_SOURCE_DIR && \
     cmake -DCUDA=ON \
         ../ceres-solver-2.1.0 && \
     make -j$(nproc) && \
-    make install
+    make install && \
+    rm -rf $OPENCV_SOURCE_DIR/*
+
+# Librealsense2
+RUN git clone https://github.com/Jason-xy/buildLibrealsense2Xavier.git && \
+    cd buildLibrealsense2Xavier && \
+    ./installLibrealsense.sh && \
+    apt-get clean && \
+    rm -rf /buildLibrealsense2Xavier && \
+    rm -rf /root/*

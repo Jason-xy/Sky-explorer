@@ -14,7 +14,7 @@ on:
       - 'VIO/scripts/docker/runtime_cuda_x86.dockerfile'
 
 jobs:
-  Build-Cross-Compile-Container:
+  Build-Runtime-CUDA-Container:
     runs-on: ubuntu-latest
     steps:
     -
