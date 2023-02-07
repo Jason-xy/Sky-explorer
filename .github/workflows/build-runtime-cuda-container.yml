@@ -38,8 +38,8 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: Tools/Jetson/Cross-compile
-        file: VIO/scripts/docker/runtime_cuda_x86.dockerfile
+        file: VIO/scripts/docker/runtime_cuda_amd64.dockerfile
         push: true
         tags: |
           jasonxxxyyy/sky-explorer:runtime-cuda11.4-ros2-amd64-${{ steps.date.outputs.today }}
-          jasonxxxyyy/sky-explorer:runtime-cuda11.4-ros2-amd64-latest
+          jasonxxxyyy/sky-explorer:runtime-cuda11.4-ros2-amd64
