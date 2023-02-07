@@ -42,4 +42,4 @@ jobs:
         push: true
         tags: |
           jasonxxxyyy/sky-explorer:runtime-cuda11.4-ros2-amd64-${{ steps.date.outputs.today }}
-          jasonxxxyyy/sky-explorer:runtime-cuda11.4-ros2-amd64
+          jasonxxxyyy/sky-explorer:runtime-cuda11.4-ros2-amd64 
