@@ -5,13 +5,13 @@ on:
     branches: [ "main" ]
     paths:
       - '.github/workflows/build-runtime-cuda-container.yml'
-      - 'VIO/scripts/docker/runtime_cuda_x86.dockerfile'
+      - 'VIO/scripts/docker/runtime_cuda_amd64.dockerfile'
 
   pull_request:
     branches: [ "main" ]
     paths:
       - '.github/workflows/build-runtime-cuda-container.yml'
-      - 'VIO/scripts/docker/runtime_cuda_x86.dockerfile'
+      - 'VIO/scripts/docker/runtime_cuda_amd64.dockerfile'
 
 jobs:
   Build-Runtime-CUDA-Container:
