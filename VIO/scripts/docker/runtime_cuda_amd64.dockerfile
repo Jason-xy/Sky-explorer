@@ -1,7 +1,10 @@
 FROM nvidia/cuda:11.4.1-devel-ubuntu20.04
 
-# RUN sed -i "s@http://.*archive.ubuntu.com@http://repo.huaweicloud.com@g" /etc/apt/sources.list && \
-#     sed -i "s@http://.*security.ubuntu.com@http://repo.huaweicloud.com@g" /etc/apt/sources.list
+RUN sed -i "s@http://.*archive.ubuntu.com@http://repo.huaweicloud.com@g" /etc/apt/sources.list && \
+    sed -i "s@http://.*security.ubuntu.com@http://repo.huaweicloud.com@g" /etc/apt/sources.list
+
+RUN rm /bin/sh && \
+    ln -s /bin/bash /bin/sh
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
@@ -52,9 +55,15 @@ RUN apt-get update && \
     python3-numpy \
     python3-py \
     python3-pytest \
+    python3-pip \
     libgstreamer1.0-dev \
     libgstreamer-plugins-base1.0-dev && \
     apt-get clean
+
+RUN python3 -m pip install --upgrade pip && \
+    python3 -m pip install \
+        rosbags \
+        wget
 
 # opencv-4.5.4-cuda11.4
 ENV ARCH_BIN="7.2,8.6"

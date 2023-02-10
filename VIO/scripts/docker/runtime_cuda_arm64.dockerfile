@@ -2,6 +2,9 @@ FROM nvcr.io/nvidia/l4t-jetpack:r35.1.0
 
 RUN sed -i "s@http://.*ports.ubuntu.com@http://repo.huaweicloud.com@g" /etc/apt/sources.list
 
+RUN rm /bin/sh && \
+    ln -s /bin/bash /bin/sh
+
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get upgrade -y && \
@@ -47,6 +50,7 @@ RUN apt-get update && \
     python-numpy \
     python-py \
     python-pytest \
+    python3-pip \
     python3-dev \
     python3-numpy \
     python3-py \
@@ -54,6 +58,11 @@ RUN apt-get update && \
     libgstreamer1.0-dev \
     libgstreamer-plugins-base1.0-dev && \
     apt-get clean
+
+RUN python3 -m pip install --upgrade pip && \
+    python3 -m pip install \
+        rosbags \
+        wget
 
 # opencv-4.5.4-cuda11.4
 ENV ARCH_BIN="7.2"
