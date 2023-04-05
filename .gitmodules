@@ -20,6 +20,3 @@
 	path = FC/ardupilot
 	url = https://github.com/Jason-xy/ardupilot
 	branch = master
-[submodule "VIO/src/VINS-Fusion"]
-	path = VIO/src/VINS-Fusion
-	url = https://github.com/Jason-xy/VINS-Fusion
