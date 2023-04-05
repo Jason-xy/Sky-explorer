@@ -20,3 +20,9 @@
 	path = FC/ardupilot
 	url = https://github.com/Jason-xy/ardupilot
 	branch = master
+[submodule "VIO/src"]
+	path = VIO/src
+	url = https://github.com/Jason-xy/VINS-Fusion-ROS2-CUDA.git
+[submodule "Planning/src"]
+	path = Planning/src
+	url = https://github.com/Jason-xy/ego-planner-swarm.git
