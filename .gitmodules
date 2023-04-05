@@ -26,3 +26,9 @@
 [submodule "Planning/src"]
 	path = Planning/src
 	url = https://github.com/Jason-xy/ego-planner-swarm.git
+[submodule "Mission/offboard/ros2_example/src/px4_msgs"]
+	path = Mission/offboard/ros2_example/src/px4_msgs
+	url = https://github.com/PX4/px4_msgs.git
+[submodule "Mission/offboard/ros2_example/src/px4_ros_com"]
+	path = Mission/offboard/ros2_example/src/px4_ros_com
+	url = https://github.com/PX4/px4_ros_com.git
