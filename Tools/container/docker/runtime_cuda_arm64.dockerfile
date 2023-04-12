@@ -125,5 +125,4 @@ RUN git clone https://github.com/Jason-xy/buildLibrealsense2Xavier.git && \
 # Other packages
 RUN apt-get update && \
     apt-get install -y ros-foxy-diagnostic-updater && \
-    ros-foxy-realsense2-* && \
     apt-get clean
