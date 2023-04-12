@@ -38,3 +38,6 @@
 [submodule "ros2/src/realsense-ros"]
 	path = ros2/src/realsense-ros
 	url = https://github.com/IntelRealSense/realsense-ros.git
+[submodule "FC/NxtPX4-Hardware"]
+	path = FC/NxtPX4-Hardware
+	url = https://github.com/Peize-Liu/NxtPX4-Hardware.git
