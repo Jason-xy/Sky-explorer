@@ -16,19 +16,25 @@
 [submodule "Tools/Jetson/Software/Jetpack_init/rootOnUSB"]
 	path = Tools/Jetson/Software/Jetpack_init/rootOnUSB
 	url = https://github.com/jetsonhacks/rootOnUSB.git
-[submodule "FC/ardupilot"]
-	path = FC/ardupilot
-	url = https://github.com/Jason-xy/ardupilot
-	branch = master
-[submodule "VIO/src"]
-	path = VIO/src
-	url = https://github.com/Jason-xy/VINS-Fusion-ROS2-CUDA.git
-[submodule "Planning/src"]
-	path = Planning/src
-	url = https://github.com/Jason-xy/ego-planner-swarm.git
 [submodule "Mission/offboard/ros2_example/src/px4_msgs"]
 	path = Mission/offboard/ros2_example/src/px4_msgs
 	url = https://github.com/PX4/px4_msgs.git
 [submodule "Mission/offboard/ros2_example/src/px4_ros_com"]
 	path = Mission/offboard/ros2_example/src/px4_ros_com
 	url = https://github.com/PX4/px4_ros_com.git
+[submodule "FC/PX4-Autopilot"]
+	path = FC/PX4-Autopilot
+	url = https://github.com/Peize-Liu/PX4-Autopilot.git
+	branch = develop
+[submodule "ros2/src/VINS-Fusion"]
+	path = ros2/src/VINS-Fusion
+	url = https://github.com/Jason-xy/VINS-Fusion-ROS2-CUDA.git
+[submodule "ros1/src/ego-planner-swarm"]
+	path = ros1/src/ego-planner-swarm
+	url = https://github.com/Jason-xy/ego-planner-swarm.git
+[submodule "ros2/src/ros1_bridge"]
+	path = ros2/src/ros1_bridge
+	url = https://github.com/ros2/ros1_bridge.git
+[submodule "ros2/src/realsense-ros"]
+	path = ros2/src/realsense-ros
+	url = https://github.com/IntelRealSense/realsense-ros.git
