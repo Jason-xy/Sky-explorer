@@ -5,13 +5,13 @@ on:
     branches: [ "main" ]
     paths:
       - '.github/workflows/build-runtime-cuda-container.yml'
-      - 'VIO/scripts/docker/runtime_cuda_amd64.dockerfile'
+      - 'Tools/container/docker/runtime_cuda_amd64.dockerfile'
 
   pull_request:
     branches: [ "main" ]
     paths:
       - '.github/workflows/build-runtime-cuda-container.yml'
-      - 'VIO/scripts/docker/runtime_cuda_amd64.dockerfile'
+      - 'Tools/container/docker/runtime_cuda_amd64.dockerfile'
 
 jobs:
   Build-Runtime-CUDA-Container:
@@ -38,7 +38,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: Tools/Jetson/Cross-compile
-        file: VIO/scripts/docker/runtime_cuda_amd64.dockerfile
+        file: Tools/container/docker/runtime_cuda_amd64.dockerfile
         push: true
         tags: |
           jasonxxxyyy/sky-explorer:runtime-cuda11.4-ros2-amd64-${{ steps.date.outputs.today }}
