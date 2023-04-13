@@ -15,10 +15,21 @@ RUN USER=docker && \
     usermod -a -G sudo docker && \
     echo "docker ALL=(ALL)NOPASSWD:ALL" >> /etc/sudoers
 
+# install gazebo9
+RUN apt-get remove -y gazebo* && \
+    apt-get remove -y libgazebo* && \
+    apt-get remove -y ros-noetic-gazebo* && \
+    sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list' && \
+    wget https://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add - && \
+    apt-get update && \
+    apt-get install -y gazebo9 libgazebo9-dev && \
+    apt-get upgrade -y
+
 RUN apt-get update && \
     apt-get install -y \
     ros-noetic-mavros \
-    ros-noetic-mavros-extras
+    ros-noetic-mavros-extras \
+    python3-catkin-tools
 
 USER docker:docker
 RUN /tmp/Tools/setup/ubuntu.sh
