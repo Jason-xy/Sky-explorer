@@ -41,3 +41,9 @@
 [submodule "FC/NxtPX4-Hardware"]
 	path = FC/NxtPX4-Hardware
 	url = https://github.com/Peize-Liu/NxtPX4-Hardware.git
+[submodule "Simulation/XTDrone"]
+	path = Simulation/XTDrone
+	url = https://github.com/robin-shaun/XTDrone.git
+[submodule "Simulation/PX4-Autopilot"]
+	path = Simulation/PX4-Autopilot
+	url = https://github.com/PX4/PX4-Autopilot.git
