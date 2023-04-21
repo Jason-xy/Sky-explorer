@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/l4t-jetpack:r35.1.0
+FROM ubuntu:20.04
 
 RUN sed -i "s@http://.*ports.ubuntu.com@http://repo.huaweicloud.com@g" /etc/apt/sources.list
 
@@ -64,8 +64,7 @@ RUN python3 -m pip install --upgrade pip && \
         rosbags \
         wget
 
-# opencv-4.5.4-cuda11.4
-ENV ARCH_BIN="7.2"
+# opencv-4.5.4
 ENV OPENCV_VERSION="4.5.4"
 ENV OPENCV_SOURCE_DIR="/root/3rdparty"
 ENV INSTALL_DIR="/usr/local"
@@ -79,12 +78,7 @@ RUN mkdir -p $OPENCV_SOURCE_DIR && cd $OPENCV_SOURCE_DIR && \
     cd build && \
     cmake -D CMAKE_BUILD_TYPE=RELEASE \
         -D CMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
-        -D WITH_CUDA=ON \
-        -D CUDA_ARCH_BIN=${ARCH_BIN} \
-        -D CUDA_ARCH_PTX="" \
         -D ENABLE_FAST_MATH=ON \
-        -D CUDA_FAST_MATH=ON \
-        -D WITH_CUBLAS=ON \
         -D WITH_LIBV4L=ON \
         -D WITH_V4L=ON \
         -D WITH_GSTREAMER=ON \
@@ -108,19 +102,41 @@ RUN cd $OPENCV_SOURCE_DIR && \
     tar zxf ceres-solver-2.1.0.tar.gz && \
     mkdir ceres-bin && \
     cd ceres-bin && \
-    cmake -DCUDA=ON \
-        ../ceres-solver-2.1.0 && \
+    cmake ../ceres-solver-2.1.0 && \
     make -j$(nproc) && \
     make install && \
     rm -rf $OPENCV_SOURCE_DIR/*
 
 # Librealsense2
-RUN git clone https://github.com/Jason-xy/buildLibrealsense2Xavier.git && \
-    cd buildLibrealsense2Xavier && \
-    ./installLibrealsense.sh && \
-    apt-get clean && \
-    rm -rf /buildLibrealsense2Xavier && \
-    rm -rf /root/*
+RUN apt-get update && \
+    apt-get install -y\
+    libssl-dev \
+    libusb-1.0-0-dev \
+    pkg-config \
+    build-essential \
+    cmake \
+    cmake-curses-gui \
+    libgtk-3-dev \
+    libglfw3-dev \
+    libgl1-mesa-dev \
+    libglu1-mesa-dev \
+    qtcreator
+
+RUN cd $OPENCV_SOURCE_DIR && \
+    git clone -b v2.53.1 https://github.com/IntelRealSense/librealsense.git && \
+    cd librealsense && \
+    ./scripts/setup_udev_rules.sh && \
+    mkdir build && \
+    cd build && \
+    cmake ../ -DCMAKE_BUILD_TYPE=Release \
+        -DBUILD_EXAMPLES=true \
+        -DFORCE_RSUSB_BACKEND=ON \
+        -DBUILD_WITH_TM2=false \
+        -DIMPORT_DEPTH_CAM_FW=false && \
+    make -j$(nproc) && \
+    make install && \
+    ldconfig && \
+    rm -rf $OPENCV_SOURCE_DIR/*
 
 # Other packages
 RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' && \
