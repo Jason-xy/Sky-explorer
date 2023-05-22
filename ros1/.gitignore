@@ -4,3 +4,4 @@ devel
 data
 log
 src/CMakeLists.txt
+.catkin_workspace
